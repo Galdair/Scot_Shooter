@@ -1,6 +1,8 @@
 import pygame.font
 
 class Button():
+    """button class for the initial play button(not the diamond one) 
+    contains fucntions for drawing and preparing the button,just like the in scoreboard.py"""
     def __init__(self,def_settings,screen,msg):
         self.screen = screen
         self.screen_rect = screen.get_rect()
