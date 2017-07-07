@@ -8,7 +8,11 @@ from alien import Alien
 from game_stats import GameStats
 from button import Button
 from scoreboard import ScoreBoard
+#OH MY GOD SOOO MUCH IMPORTING
 def run_game():
+    """ main component of the Scots_shooter this is where the main game loop runs
+    this is where all the blitting and fucntion calling and class initialicizing happens
+    the rest is pretty straigthforward"""
     pygame.init()
     def_settings = Settings()
    

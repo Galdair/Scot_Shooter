@@ -2,6 +2,10 @@ import pygame
 
 
 class Ship():
+    """defining a ship for use in game,it has tree methods: 
+    blit(pygame rendereing) 
+    update for moving
+    centering ship for new games"""
     def __init__(self,def_settings,screen):
         self.screen = screen
         self.def_settings = def_settings

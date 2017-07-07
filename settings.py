@@ -1,6 +1,7 @@
 class Settings():
     def __init__(self):
-        """initilaize A scotish setting!"""
+        """initilaize A scotish setting! with the necessary background ,
+        dinamic settings are volatile the rest is not,and increase_speed is for changing levels """
         self.screen_width = 1280
         self.screen_height = 760
         self.bgcolor = (255,255,255)

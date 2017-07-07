@@ -2,6 +2,9 @@ import pygame
 from pygame.sprite import Sprite
 
 class Alien(Sprite):
+    """alien class for creating alien sprites by the dozen(later used in grouping aliens with Group()
+    they can move with update() they can be blit() for rendering the image,
+    and they know if they are out of the screen rectangle with check_edges"""
     def __init__(self,def_settings,screen):
         super(Alien,self).__init__()
         self.screen = screen

@@ -1,6 +1,12 @@
 import pygame.font
 
 class ScoreBoard():
+    """scoreboard class for displaying score,high score,and level of the game
+    it has functions for prepping each variable,
+    turning the variable into a string and turning it into a picture and after that getting a screen for it
+    and after thet blitting every image with show_score(self)
+    the init takes care of the neceassy colors
+     i use a different color in prep_high_score becouse of the flag is blue there,that is a blue vaule by the way"""
     def __init__(self,def_settings,screen,stats):
         self.screen = screen
         self.screen_rect = screen.get_rect()

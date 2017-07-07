@@ -3,6 +3,7 @@ import pygame
 from pygame.sprite import Sprite
 
 class Bullet(Sprite):
+    """defining a bullet class for creating bullet sprites whic can move with update and can be blit for rendering in pygame"""
     def __init__(self,screen,ship):
         super(Bullet,self).__init__()
         self.ball_image = pygame.image.load('images/tennis_ball15.bmp')
