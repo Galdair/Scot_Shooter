@@ -18,10 +18,12 @@ def ship_hit(def_settings,stats,screen,ship,aliens,bullets):
         create_fleet(def_settings,screen,ship,aliens)
         ship.center_ship()
         sleep(0.5)
+        
     else:
        stats.game_active = False
        pygame.mouse.set_visible(True)
-def check_events(ship,bullets,screen,stats,play_button,aliens,def_settings):
+       stats.score = 0
+def check_events(ship,bullets,screen,stats,play_button,aliens,def_settings,sb):
     
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -46,14 +48,17 @@ def check_events(ship,bullets,screen,stats,play_button,aliens,def_settings):
                 ship.moving_left = False
         elif event.type == pygame.MOUSEBUTTONDOWN:
             mouse_x,mouse_y = pygame.mouse.get_pos()
-            check_play_button(stats,play_button,mouse_x,mouse_y,def_settings,screen,ship,aliens,bullets)
+            check_play_button(stats,play_button,mouse_x,mouse_y,def_settings,screen,ship,aliens,bullets,sb)
             
             
-def check_play_button(stats,play_button,mouse_x,mouse_y,def_settings,screen,ship,aliens,bullets):
+def check_play_button(stats,play_button,mouse_x,mouse_y,def_settings,screen,ship,aliens,bullets,sb):
     if play_button.rect.collidepoint(mouse_x,mouse_y) and not stats.game_active:
         stats.game_active = True
         stats.reset_stats()
         pygame.mouse.set_visible(False)
+        sb.prep_score()
+        sb.prep_high_score()
+        sb.prep_level()
         aliens.empty()
         bullets.empty()
         create_fleet(def_settings,screen,ship,aliens)
@@ -68,8 +73,11 @@ def update_bullets(def_settings,screen,ship,aliens,bullets,stats,sb):
        if collisions:
            stats.score += def_settings.alien_points
            sb.prep_score()
+       check_high_score(stats,sb)
        if len(aliens) == 0:
            bullets.empty()
+           stats.level += 1
+           sb.prep_level()
            def_settings.increase_speed()
            create_fleet(def_settings,screen,ship,aliens)  
             
@@ -133,3 +141,7 @@ def create_fleet(def_settings,screen,ship,aliens):
     for row_number in range(number_rows):
         for alien_number in range(number_aliens_x):
             create_alien(def_settings,screen,aliens,alien,alien_number,row_number)
+def check_high_score(stats,sb):
+    if stats.score > stats.high_score:
+        stats.high_score = stats.score
+        sb.prep_high_score()

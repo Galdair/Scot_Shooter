@@ -25,7 +25,7 @@ def run_game():
     sb = ScoreBoard(def_settings,screen,stats)
     while True:
         
-        gf.check_events(ship,bullets,screen,stats,play_button,aliens,def_settings)
+        gf.check_events(ship,bullets,screen,stats,play_button,aliens,def_settings,sb)
         if stats.game_active:
             ship.update()
             gf.update_bullets(def_settings,screen,ship,aliens,bullets,stats,sb)
