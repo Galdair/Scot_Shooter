@@ -73,20 +73,20 @@ def update_bullets(def_settings,screen,ship,aliens,bullets,stats,sb):
     """updateing the bullets for collisions with the aliens group and also taking care of 
     them after retirement in the top of the screen,also if everything is shot down (we know if the list of aliens is empty) 
     then creating anew fleet"""
-       for bullet in bullets.copy():
-            if bullet.rect.bottom <= 0:
-                bullets.remove(bullet)           
-       collisions = pygame.sprite.groupcollide(bullets,aliens,def_settings.powerful_weapon_limiter,True)     
-       if collisions:
-           stats.score += def_settings.alien_points
-           sb.prep_score()
-       check_high_score(stats,sb)
-       if len(aliens) == 0:
-           bullets.empty()
-           stats.level += 1
-           sb.prep_level()
-           def_settings.increase_speed()
-           create_fleet(def_settings,screen,ship,aliens)  
+    for bullet in bullets.copy():
+        if bullet.rect.bottom <= 0:
+            bullets.remove(bullet)           
+    collisions = pygame.sprite.groupcollide(bullets,aliens,def_settings.powerful_weapon_limiter,True)     
+    if collisions:
+        stats.score += def_settings.alien_points
+        sb.prep_score()
+    check_high_score(stats,sb)
+    if len(aliens) == 0:
+        bullets.empty()
+        stats.level += 1
+        sb.prep_level()
+        def_settings.increase_speed()
+        create_fleet(def_settings,screen,ship,aliens)  
             
 def update_screen(def_settings, screen, ship,bullets,aliens,play_button,stats,sb):
     """updating the screen,i haven't really uesd lately,but still important though
@@ -139,19 +139,19 @@ def get_number_rows(def_settings,ship_height,alien_height):
     return number_rows
     
 def get_number_aliens_x(def_settings, alien_width):
-     """function used with create fleet ,for creating the max x*y fleet"""
+    """function used with create fleet ,for creating the max x*y fleet"""
     available_space_x = def_settings.screen_width - 2*alien_width
     number_aliens_x = int(available_space_x /(2*alien_width))
     return number_aliens_x
     
 def create_alien(def_settings,screen,aliens,alien,alien_number,row_number):
-     """function used with create fleet ,for creating the max x*y fleet"""
-        alien = Alien(def_settings,screen)
-        alien_width = alien.rect.width
-        alien.x = alien_width + 2* alien_width * alien_number
-        alien.rect.x = alien.x
-        alien.rect.y = alien.rect.height + 2*alien.rect.height * row_number
-        aliens.add(alien) 
+    """function used with create fleet ,for creating the max x*y fleet"""
+    alien = Alien(def_settings,screen)
+    alien_width = alien.rect.width
+    alien.x = alien_width + 2* alien_width * alien_number
+    alien.rect.x = alien.x
+    alien.rect.y = alien.rect.height + 2*alien.rect.height * row_number
+    aliens.add(alien) 
         
 def create_fleet(def_settings,screen,ship,aliens):
     """creating the alien fleet,and calculating the maximum possible number of aliens for any given screen res"""
